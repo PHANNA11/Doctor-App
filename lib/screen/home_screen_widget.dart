@@ -1,3 +1,4 @@
+import 'package:app_ui/detail_screen.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -160,15 +161,25 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
         ),
         child: Center(
           child: ListTile(
-            leading: Container(
-              height: 80,
-              width: 60,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: const Color.fromRGBO(161, 126, 73, 1),
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(doctor.image.toString()))),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailUSerScreen(doctor: doctor),
+                  ));
+            },
+            leading: Hero(
+              tag: doctor.id.toString(),
+              child: Container(
+                height: 80,
+                width: 60,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: const Color.fromRGBO(161, 126, 73, 1),
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(doctor.image.toString()))),
+              ),
             ),
             title: Text(doctor.name.toString()),
             subtitle: Text(doctor.position.toString()),
